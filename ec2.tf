@@ -29,12 +29,16 @@ resource "aws_security_group" "alarm_sg" {
 }
 
 data "aws_ami" "amazon_linux" {
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
   most_recent = true
 
   owners = ["amazon"]
 
   filter {
-    name = "name"
+    name   = "name"
     values = ["amzn2-ami-hvm-*"]
   }
 }
